@@ -1,1 +1,1 @@
-rootProject.name = "setak-fire"
+rootProject.name = "setak-fire-backend"
