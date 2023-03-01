@@ -8,3 +8,17 @@ spring:
       hibernate:
         globally_quoted_identifiers: true
         globally_quoted_identifiers_skip_column_definitions: true
+        ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306
+    username: ENC(ra/V3UVKJr6bpyWvkHFAWqdaYZ1KMttx)
+    password: ENC(/2Q1nDd1348rw4baYc9uYWJLh8fGZkaI)
+    dbcp2:
+      default-schema: setakfire
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    bean: jasyptStringEncryptor
+    pool-size: 2
+    string-output-type: base64
+    key-obtention-iterations: 100000
