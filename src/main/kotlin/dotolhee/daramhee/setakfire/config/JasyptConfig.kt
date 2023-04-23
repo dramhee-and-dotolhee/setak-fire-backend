@@ -1,6 +1,6 @@
 package dotolhee.daramhee.setakfire.config
 
-import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties
+import lombok.extern.slf4j.Slf4j
 import org.jasypt.encryption.StringEncryptor
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor
 import org.springframework.beans.factory.annotation.Value
@@ -14,19 +14,17 @@ import java.util.stream.Collectors
 
 
 @Configuration
-@EnableEncryptableProperties
-class JasyptConfig {
+@Slf4j
+class JasyptConfig(
     @Value("\${jasypt.encryptor.algorithm}")
-    private val algorithm: String? = null
+    private val algorithm: String,
     @Value("\${jasypt.encryptor.pool-size}")
-    private val poolSize = 0
-
+    private val poolSize: Int,
     @Value("\${jasypt.encryptor.string-output-type}")
-    private val stringOutputType: String? = null
-
+    private val stringOutputType: String?,
     @Value("\${jasypt.encryptor.key-obtention-iterations}")
-    private val keyObtentionIterations = 0
-
+    private val keyObtentionIterations: Int,
+    ) {
     @Bean
     fun jasyptStringEncryptor(): StringEncryptor? {
         val encryptor = PooledPBEStringEncryptor()
@@ -44,11 +42,11 @@ class JasyptConfig {
 
     private fun getJasyptEncryptorPassword(): String {
         return try {
-            val resource = ClassPathResource("jasypt-encryptor-password.txt")
+            val resource = ClassPathResource("classpath:key/jasypt-encryptor-password.txt")
             Files.readAllLines(Paths.get(resource.getURI())).stream()
                 .collect(Collectors.joining(""))
         } catch (e: IOException) {
-            throw RuntimeException("Not found Jasypt password file.")
+            throw RuntimeException("####Jasypt password file 이 존재하지 않습니다.####")
         }
     }
 }

@@ -2,19 +2,32 @@ server:
   port: 8080
   servlet:
     context-path: /api/v1/
+  compression: # contents 압축 설정
+    enabled: true
+    mime-types: text/html,text/plain,text/css,application/javascript,application/json
+    min-response-size: 2048
+
+  tomcat:
+    connection-timeout: 300000 # 5분
 spring:
+  application:
+    name: setak-fire-backend
   jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL57Dialect
     properties:
       hibernate:
         globally_quoted_identifiers: true
         globally_quoted_identifiers_skip_column_definitions: true
-        ddl-auto: update
+        ddl-auto: create
   datasource:
     url: jdbc:mysql://localhost:3306
     username: ENC(ra/V3UVKJr6bpyWvkHFAWqdaYZ1KMttx)
     password: ENC(/2Q1nDd1348rw4baYc9uYWJLh8fGZkaI)
     dbcp2:
       default-schema: setakfire
+  jackson:
+    time-zone: Asia/Seoul
 jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES

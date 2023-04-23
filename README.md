@@ -7,3 +7,8 @@
   - For compilers to find openjdk@17 you may need to set:
 `echo 'export CPPFLAGS="-I/usr/local/opt/openjdk@17/include"' >> ~/.zshrc`
   - source ~/.zshrc
+
+
+## key 설정
+- src/main/resources/key 경로에 `jasypt-encryptor-password.txt` 파일 생성 후 key값 추가
+  - 추후 .key파일로 변경 필요
