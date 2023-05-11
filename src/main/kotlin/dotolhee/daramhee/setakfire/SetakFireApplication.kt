@@ -1,6 +1,5 @@
 package dotolhee.daramhee.setakfire
 
-import org.springframework.boot.Banner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -8,7 +7,5 @@ import org.springframework.boot.runApplication
 class SetakFireApplication
 
 fun main(args: Array<String>) {
-	runApplication<SetakFireApplication>(*args) {
-		setBannerMode(Banner.Mode.OFF)
-	}
+	runApplication<SetakFireApplication>(*args)
 }

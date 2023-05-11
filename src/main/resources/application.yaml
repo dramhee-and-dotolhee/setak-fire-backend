@@ -15,15 +15,17 @@ spring:
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL57Dialect
+    generate-ddl: true # 스키마 관리는 matrix(rails) 에서
     properties:
       hibernate:
-        globally_quoted_identifiers: true
-        globally_quoted_identifiers_skip_column_definitions: true
         ddl-auto: create
+        jdbc:
+          batch_size: 10
   datasource:
-    url: jdbc:mysql://localhost:3306
-    username: ENC(ra/V3UVKJr6bpyWvkHFAWqdaYZ1KMttx)
-    password: ENC(/2Q1nDd1348rw4baYc9uYWJLh8fGZkaI)
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:mysql://localhost:3306/setakfire
+    username: root
+    password: 1234
     dbcp2:
       default-schema: setakfire
   jackson:
@@ -32,6 +34,20 @@ jasypt:
   encryptor:
     algorithm: PBEWithMD5AndDES
     bean: jasyptStringEncryptor
-    pool-size: 2
+    pool-size: 1
     string-output-type: base64
-    key-obtention-iterations: 100000
+    key-obtention-iterations: 10000
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger
+    operations-sorter: alpha
+    tags-sorter: alpha
+    disable-swagger-default-url: true
+    display-request-duration: true
+    filter: true # 태그 검색필터
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
