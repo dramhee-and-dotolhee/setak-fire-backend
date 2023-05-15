@@ -2,7 +2,7 @@
   <configuration default="false" name="SetakFireApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
     <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-    <module name="setak-fire-backend.main" />
+    <module name="dotolhee.daramhee.setak-fire-backend.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="dotolhee.daramhee.setakfire.SetakFireApplication" />
     <method v="2">
       <option name="Make" enabled="true" />
