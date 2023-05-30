@@ -4,7 +4,7 @@ import dotolhee.daramhee.setakfire.global.enums.CategoryType
 import dotolhee.daramhee.setakfire.shop.entity.Shop
 import java.sql.Timestamp
 
-data class ShopResponseDTO (
+data class ShopResponseDTO(
     var id: Long = 0L,
     var name: String,
     var imageUrls: List<String>?,
@@ -22,6 +22,10 @@ data class ShopResponseDTO (
 ) {
     val x = latitude
     val y = longitude
+    val categoryTypeNames = categoryTypes.map {
+        it.displayName
+    }
+
     companion object {
         fun fromEntity(shop: Shop): ShopResponseDTO {
 
@@ -44,7 +48,8 @@ data class ShopResponseDTO (
         }
     }
 }
-data class NewShopDTO (
+
+data class NewShopDTO(
     val name: String,
     val imageUrls: List<String>?,
     val partnerId: Long,
