@@ -6,5 +6,5 @@ enum class CategoryType(
     CLEANING("세탁"),
     REFORM("리폼"),
     MENDING("수선"),
-    PREMINUM("프리미엄")
+    PREMIUM("프리미엄")
 }

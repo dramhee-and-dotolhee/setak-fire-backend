@@ -17,9 +17,11 @@ data class ShopResponseDTO (
     var address: String,
     var createdAt: Timestamp?,
     var updateAt: Timestamp?,
-    var x: Double?,
-    var y: Double?,
+    var latitude: Double?,
+    var longitude: Double?,
 ) {
+    val x = latitude
+    val y = longitude
     companion object {
         fun fromEntity(shop: Shop): ShopResponseDTO {
 
@@ -36,8 +38,8 @@ data class ShopResponseDTO (
                 partnerId = shop.partner.id,
                 createdAt = shop.createdAt,
                 updateAt = shop.updatedAt,
-                x = shop.x,
-                y = shop.y,
+                longitude = shop.longitude,
+                latitude = shop.latitude,
             )
         }
     }
@@ -52,4 +54,6 @@ data class NewShopDTO (
     val minimumUnit: Int?,
     val deliveryCharge: Int?,
     val address: String,
+    val latitude: Double? = 100.00,
+    val longitude: Double? = 100.00,
 )

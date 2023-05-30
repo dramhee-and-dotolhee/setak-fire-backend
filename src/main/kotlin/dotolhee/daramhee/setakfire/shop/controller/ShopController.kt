@@ -6,6 +6,7 @@ import dotolhee.daramhee.setakfire.shop.dto.NewShopDTO
 import dotolhee.daramhee.setakfire.shop.dto.ShopResponseDTO
 import dotolhee.daramhee.setakfire.shop.entity.Shop
 import dotolhee.daramhee.setakfire.shop.repository.ShopRepository
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import lombok.RequiredArgsConstructor
 import org.springframework.data.repository.findByIdOrNull
@@ -21,17 +22,20 @@ class ShopController(
 ) {
 
     @GetMapping("")
+    @Operation(summary = "매장 전체 조회")
     fun list(): List<ShopResponseDTO> {
         val shops = shopRepository.findAll()
         return shops.map { ShopResponseDTO.fromEntity(it) }
     }
 
     @PostMapping("")
+    @Operation(summary = "매장 생성")
     fun new(
         @RequestBody request: NewShopDTO
     ): Shop {
         val partner: Partner =
-            partnerRepository.findByIdOrNull(request.partnerId) ?: throw NoSuchElementException("존재하지않는 파트너 입니다.")
+            partnerRepository.findByIdOrNull(request.partnerId)
+                ?: throw NoSuchElementException("존재하지않는 파트너 입니다.")
         return shopRepository.save(Shop(request, partner))
     }
 }

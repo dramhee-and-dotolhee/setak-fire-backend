@@ -15,7 +15,7 @@ spring:
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL57Dialect
-    generate-ddl: true # 스키마 관리는 matrix(rails) 에서
+    generate-ddl: true
     properties:
       hibernate:
         ddl-auto: create
@@ -26,6 +26,8 @@ spring:
     url: jdbc:log4jdbc:mysql://localhost:3306/setakfire
     username: root
     password: 1234
+#    username: ENC(VLE2M0yVHkt5TxyJBKEvXTEFFUrmPPc4TMH/p5EojtE=)
+#    password: ENC(mxqGDr+un20sPaYg4zqER9hi5vf87I75z0g/1Az1rt4=)
     dbcp2:
       default-schema: setakfire
   jackson:
@@ -36,7 +38,7 @@ jasypt:
     bean: jasyptStringEncryptor
     pool-size: 1
     string-output-type: base64
-    key-obtention-iterations: 10000
+    key-obtention-iterations: 1000
 springdoc:
   api-docs:
     enabled: true

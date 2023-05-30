@@ -46,13 +46,12 @@ class Shop(
     @Column
     val address: String,
 
+    @Column
+    val latitude: Double?,
+
+    @Column
+    val longitude: Double?,
     ) : BaseEntity() {
-
-    @Column
-    val x: Double = 100.0
-
-    @Column
-    val y: Double = 1000.0
 
     constructor(newDTO: NewShopDTO, partner: Partner) : this(
         name = newDTO.name,
@@ -64,5 +63,7 @@ class Shop(
         imageUrls = newDTO.imageUrls,
         isAvailableDelivery = newDTO.isAvailableDelivery,
         partner = partner,
+        latitude = newDTO.latitude,
+        longitude = newDTO.longitude,
     )
 }
