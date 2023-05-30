@@ -1,4 +1,4 @@
-package dotolhee.daramhee.setakfire.config
+package dotolhee.daramhee.setakfire.global.config
 
 import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.models.Components
