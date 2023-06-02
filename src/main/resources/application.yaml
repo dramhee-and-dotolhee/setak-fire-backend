@@ -23,11 +23,9 @@ spring:
           batch_size: 10
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:mysql://localhost:3306/setakfire
-    username: root
-    password: 1234
-#    username: ENC(VLE2M0yVHkt5TxyJBKEvXTEFFUrmPPc4TMH/p5EojtE=)
-#    password: ENC(mxqGDr+un20sPaYg4zqER9hi5vf87I75z0g/1Az1rt4=)
+    url: ENC(RTl/RVmJUTUU/zrAOzzInVK0cvMkPVKZXWF8C0IUhraLcw7EvurKNIOfmb6HrhOOyUdsPwGQJ2QOZ3NTSsdjV26eG7695Spv)
+    username: ENC(PZFRpoJoaIqLe6o30AfiLNVmRxvtQN8IyeaaY1XuDC4=)
+    password: ENC(nwqc82whU9x+PWAabe0uM9IwR+WVqylFfMgUzm52pSM=)
     dbcp2:
       default-schema: setakfire
   jackson:

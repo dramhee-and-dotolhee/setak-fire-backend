@@ -29,20 +29,23 @@ class JasyptConfig(
     ) {
     @Bean("jasyptStringEncryptor")
     fun jasyptStringEncryptor(): StringEncryptor? {
-        val encryptor = PooledPBEStringEncryptor()
-        val config = SimpleStringPBEConfig()
-        config.password = getJasyptEncryptorPassword()
-        config.algorithm = algorithm
-        config.keyObtentionIterations = keyObtentionIterations
-        config.poolSize = poolSize
-        config.saltGenerator = RandomSaltGenerator()
-        config.ivGenerator = RandomIvGenerator()
-        config.stringOutputType = stringOutputType
-        encryptor.setConfig(config)
-        val source = "test"
-        println("plane :: ${source}, encrypt :: ${encryptor.encrypt(source)}")
-
-        return encryptor
+        try {
+            val encryptor = PooledPBEStringEncryptor()
+            val config = SimpleStringPBEConfig()
+            config.password = getJasyptEncryptorPassword()
+            config.algorithm = algorithm
+            config.keyObtentionIterations = keyObtentionIterations
+            config.poolSize = poolSize
+            config.saltGenerator = RandomSaltGenerator()
+            config.ivGenerator = RandomIvGenerator()
+            config.stringOutputType = stringOutputType
+            encryptor.setConfig(config)
+//            val source1 = "setakfire_admin"
+//            println("plane :: ${source1}, encrypt :: ${encryptor.encrypt(source1)}")
+            return encryptor
+        } catch (ex:Exception) {
+            throw RuntimeException()
+        }
     }
 
     private fun getJasyptEncryptorPassword(): String {
