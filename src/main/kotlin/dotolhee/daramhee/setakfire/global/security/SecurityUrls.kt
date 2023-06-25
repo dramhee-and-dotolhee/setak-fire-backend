@@ -11,8 +11,8 @@ class SecurityUrls {
         val NO_AUTH_URLS = arrayOf(
             "/",
             "/swagger-ui/**",
-            "register",
-            "sign_in",
+            "/register",
+            "/sign_in",
         )
     }
 }

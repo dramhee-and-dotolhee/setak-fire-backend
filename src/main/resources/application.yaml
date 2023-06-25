@@ -37,6 +37,9 @@ jasypt:
     pool-size: 1
     string-output-type: base64
     key-obtention-iterations: 1000
+jwt:
+  secret-key: ENC(tQPe08SWlh6mbiaK+wLpO1sDyLGdLUXCP3Sjp/H/5nfxEHdrcRSG3w==)
+
 springdoc:
   api-docs:
     enabled: true
