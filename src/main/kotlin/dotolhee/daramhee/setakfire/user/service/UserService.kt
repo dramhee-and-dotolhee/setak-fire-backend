@@ -21,15 +21,23 @@ class UserService(
 
     @Transactional
     fun register(request: RegisterDTO): ResponseDTO {
-        val user = User(
+        if (!usernameValidation(request.username)) {
+            throw IllegalArgumentException("이미 가입된 회원입니다.")
+        }
+        var user = User(
             username = request.username,
             encryptedPassword = passwordEncoder.encode(request.password),
             connectedId = null
         )
+        user = userRepository.save(user)
         // ROLE 세팅
         val role = roleRepository.findByType(request.role)
         userRoleRepository.save(UserRole(userId = user.id, roleId = role.id))
-        userRepository.save(user)
-        return ResponseDTO.fromRegisterEntity(userRepository.save(user))
+        return ResponseDTO.fromRegisterEntity(user)
+    }
+
+    private fun usernameValidation(username: String): Boolean {
+        val user = userRepository.findByUsername(username)
+        return user?.let { false } ?: true
     }
 }

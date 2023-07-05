@@ -11,6 +11,7 @@ class Role(
     @Column
     val id: Long = 0L,
 
+    @Column
     @Enumerated(EnumType.STRING)
     val type: RoleType,
 )

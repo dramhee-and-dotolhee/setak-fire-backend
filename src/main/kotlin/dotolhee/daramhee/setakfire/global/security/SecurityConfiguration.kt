@@ -20,7 +20,7 @@ class SecurityConfiguration {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .cors().and()
+            .cors().configurationSource(corsConfigurationSource()).and()
             .csrf().disable()// CSRF 보호 기능 비활성화
             .authorizeHttpRequests{
                 it.requestMatchers(*SecurityUrls.NO_AUTH_URLS).permitAll() // NO_AUTH_URL 제외전부 로그인 필요
