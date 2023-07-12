@@ -1,5 +1,6 @@
 package dotolhee.daramhee.setakfire.user.controller
 
+import dotolhee.daramhee.setakfire.user.dto.LoginDTO
 import dotolhee.daramhee.setakfire.user.dto.RegisterDTO
 import dotolhee.daramhee.setakfire.user.service.UserService
 import org.springframework.http.HttpStatus
@@ -26,5 +27,10 @@ class AuthenticationController(
             ex.printStackTrace()
             ResponseEntity(ex.message, HttpStatus.BAD_REQUEST)
         }
+    }
+
+    @PostMapping("/login")
+    fun authenticate(@RequestBody request: LoginDTO) {
+        return userService.login(request)
     }
 }

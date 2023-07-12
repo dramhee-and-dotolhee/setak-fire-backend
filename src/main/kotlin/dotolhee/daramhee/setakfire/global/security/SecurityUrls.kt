@@ -13,6 +13,7 @@ class SecurityUrls {
             "/swagger-ui/**",
             "/register",
             "/sign_in",
+            "/**"
         )
     }
 }

@@ -10,6 +10,10 @@ data class RegisterDTO(
     var connectedId: Long?,
 )
 
+data class LoginDTO(
+    val username: String,
+    val password: String,
+)
 data class ResponseDTO(
     var id: Long,
     var username: String,
