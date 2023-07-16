@@ -2,6 +2,9 @@ package dotolhee.daramhee.setakfire.user.entity
 
 import dotolhee.daramhee.setakfire.global.entity.BaseEntity
 import jakarta.persistence.*
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import java.sql.Timestamp
 
 @Entity
@@ -13,7 +16,7 @@ class User(
     val id: Long = 0L,
 
     @Column(unique = true)
-    val username: String,
+    val accountName: String,
 
     @Column
     val encryptedPassword: String,
@@ -22,49 +25,43 @@ class User(
     val connectedId: Long?,
 
     @Column
-    val currentSignInAt: Timestamp,
+    var currentSignInAt: Timestamp,
 
     @Column
-    val token: String?,
+    var token: String?,
 
     @Column
     val isActive: Boolean,
-) : BaseEntity()
-//    , UserDetails {
-//    companion object {
-////        fun getCurrentUser(): User {
-////            val principal = SecurityContextHolder.getContext().authentication.principal as UserDetails
-////            return User(
-////                username = principal.username,
-////                encryptedPassword = principal.password,
-////            )
-////        }
-//    }
-//    override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
-//        return null
-//    }
-//
-//    override fun getPassword(): String {
-//        return encryptedPassword
-//    }
-//
-////    override fun getUsername(): String {
-////        return username
-////    }
-//
-//    override fun isAccountNonExpired(): Boolean {
-//        return true
-//    }
-//
-//    override fun isAccountNonLocked(): Boolean {
-//        return true
-//    }
-//
-//    override fun isCredentialsNonExpired(): Boolean {
-//        return true
-//    }
-//
-//    override fun isEnabled(): Boolean {
-//        return isActive
-//    }
-//}
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    var role: Role,
+) : BaseEntity(), UserDetails {
+    override fun getAuthorities(): Collection<GrantedAuthority> {
+        return  listOf(SimpleGrantedAuthority(role.type.displayName))
+    }
+
+    override fun getPassword(): String {
+        return encryptedPassword
+    }
+
+    override fun getUsername(): String {
+        return accountName
+    }
+
+    override fun isAccountNonExpired(): Boolean {
+        return isActive
+    }
+
+    override fun isAccountNonLocked(): Boolean {
+        return isActive
+    }
+
+    override fun isCredentialsNonExpired(): Boolean {
+        return isActive
+    }
+
+    override fun isEnabled(): Boolean {
+        return isActive
+    }
+}

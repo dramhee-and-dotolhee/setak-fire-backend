@@ -44,9 +44,10 @@ dependencies {
 
 	// login
 	implementation("io.jsonwebtoken:jjwt:0.9.1")
+	implementation("javax.xml.bind:jaxb-api:2.3.1")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.json:json:20220924")
+	implementation("org.json:json:20230227")
 	implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
