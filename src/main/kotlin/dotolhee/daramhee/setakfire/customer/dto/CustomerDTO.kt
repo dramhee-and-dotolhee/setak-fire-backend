@@ -1,7 +1,10 @@
 package dotolhee.daramhee.setakfire.customer.dto
 
+import dotolhee.daramhee.setakfire.user.dto.RegisterDTO
+
 class CustomerDTO {
     data class New(
+        var userInfo: RegisterDTO,
         var name: String,
         var phoneNumber: String,
         var address1: String,

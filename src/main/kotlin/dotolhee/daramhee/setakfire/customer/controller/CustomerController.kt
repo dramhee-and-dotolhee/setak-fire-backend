@@ -1,6 +1,7 @@
 package dotolhee.daramhee.setakfire.customer.controller
 
 import dotolhee.daramhee.setakfire.customer.dto.CustomerDTO
+import dotolhee.daramhee.setakfire.customer.entity.Customer
 import dotolhee.daramhee.setakfire.customer.service.CustomerService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -22,7 +23,7 @@ class CustomerController(
     @Operation(summary = "고객 생성")
     fun new(
         @RequestBody request: CustomerDTO.New
-    ): Map<String, Long> {
+    ): Customer {
         return customerService.new(request)
     }
 }

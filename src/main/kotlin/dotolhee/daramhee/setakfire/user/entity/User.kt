@@ -22,7 +22,7 @@ class User(
     val encryptedPassword: String,
 
     @Column
-    val connectedId: Long?,
+    var connectedId: Long?,
 
     @Column
     var currentSignInAt: Timestamp,

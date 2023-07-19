@@ -1,7 +1,10 @@
 package dotolhee.daramhee.setakfire.user.service
 
 import dotolhee.daramhee.setakfire.global.security.token.JwtTokenUtil
-import dotolhee.daramhee.setakfire.user.dto.*
+import dotolhee.daramhee.setakfire.user.dto.LoginDTO
+import dotolhee.daramhee.setakfire.user.dto.LoginResponseDTO
+import dotolhee.daramhee.setakfire.user.dto.RegisterDTO
+import dotolhee.daramhee.setakfire.user.dto.UserBasicDTO
 import dotolhee.daramhee.setakfire.user.entity.User
 import dotolhee.daramhee.setakfire.user.repository.RoleRepository
 import dotolhee.daramhee.setakfire.user.repository.UserRepository
@@ -24,7 +27,7 @@ class UserService(
 ) {
 
     @Transactional
-    fun register(request: RegisterDTO): ResponseDTO {
+    fun register(request: RegisterDTO): User {
         if (!usernameValidation(request.username)) {
             throw IllegalArgumentException("이미 가입된 회원입니다.")
         }
@@ -39,8 +42,7 @@ class UserService(
             role = role
         )
         // ROLE 세팅
-        user = userRepository.save(user)
-        return ResponseDTO.fromRegisterEntity(user)
+        return userRepository.save(user)
     }
 
     fun login(request: LoginDTO): LoginResponseDTO {
