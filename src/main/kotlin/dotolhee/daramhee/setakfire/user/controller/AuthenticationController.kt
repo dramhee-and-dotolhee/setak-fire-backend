@@ -1,7 +1,6 @@
 package dotolhee.daramhee.setakfire.user.controller
 
 import dotolhee.daramhee.setakfire.user.dto.LoginDTO
-import dotolhee.daramhee.setakfire.user.dto.LoginResponseDTO
 import dotolhee.daramhee.setakfire.user.dto.RegisterDTO
 import dotolhee.daramhee.setakfire.user.service.UserService
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -35,7 +34,14 @@ class AuthenticationController(
     }
 
     @PostMapping("/login")
-    fun authenticate(@RequestBody request: LoginDTO): LoginResponseDTO {
-        return userService.login(request)
+    fun authenticate(@RequestBody request: LoginDTO):
+            ResponseEntity<out Any> {
+        return try {
+            val response = userService.login(request)
+            ResponseEntity(response, HttpStatus.OK)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            ResponseEntity(ex.message, HttpStatus.BAD_REQUEST)
+        }
     }
 }
